@@ -13,6 +13,7 @@ assets/*.svg            6 deterministic thumbnails (no external images)
 design/DESIGN_SPEC.md   ← design source of truth (tokens, components, content)
 design/reference.html   ← the intended design, rendered pixel-true (Figma import source)
 design/DRIFTS.md        ← answer key: the 4 planted drifts
+design/FIGMA_SETUP.md   ← how to build the Figma file + wire up the REST API
 vercel.json             static hosting config
 ```
 
@@ -65,5 +66,7 @@ GitHub Pages works identically (Settings → Pages → deploy from this branch, 
 3. You get a real Figma frame with live layers, text nodes and fills matching
    `DESIGN_SPEC.md` — which is what your drift tool reads via the Figma REST API.
 
-Then point your tool at that Figma file and at the deployed root URL. Step-by-step
-instructions, including the manual build and the API calls, are in the project notes.
+Then point your tool at that Figma file and at the deployed root URL.
+
+Full step-by-step instructions — including the by-hand build, which layers to rename, and
+the Figma REST API calls for each drift — are in [`design/FIGMA_SETUP.md`](design/FIGMA_SETUP.md).
