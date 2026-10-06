@@ -1,0 +1,206 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<meta name="robots" content="noindex" />
+<title>Saffron Kitchen — Design Reference (source of truth)</title>
+<link rel="preconnect" href="https://fonts.googleapis.com" />
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600&family=Playfair+Display:wght@700&display=swap" rel="stylesheet" />
+<style>
+  /* ============================================================
+     DESIGN REFERENCE — matches design/DESIGN_SPEC.md exactly.
+     This file is the intended design. Do not "fix" it to match
+     the implementation; the implementation is the thing that drifts.
+     ============================================================ */
+  :root {
+    --accent: #E8590C;
+    --accent-soft: #FFF1E8;
+    --ink: #1A1A1A;
+    --ink-muted: #6B6B6B;
+    --surface: #FFFFFF;
+    --page: #FAF7F2;
+    --border: #E8E2D9;
+    --card-gap: 24px;
+    --card-padding: 20px;
+    --radius-card: 16px;
+    --radius-pill: 999px;
+    --shadow-card: 0 1px 2px rgba(26,26,26,0.04), 0 8px 24px rgba(26,26,26,0.06);
+    --max-width: 1120px;
+    --gutter: 24px;
+  }
+  * { box-sizing: border-box; }
+  body {
+    margin: 0;
+    background: var(--page);
+    color: var(--ink);
+    font-family: 'Inter', system-ui, -apple-system, sans-serif;
+    -webkit-font-smoothing: antialiased;
+  }
+  .wrap { max-width: var(--max-width); margin: 0 auto; padding: 0 var(--gutter); }
+
+  /* Header */
+  .site-header { background: var(--surface); border-bottom: 1px solid var(--border); }
+  .site-header .wrap { height: 72px; display: flex; align-items: center; justify-content: space-between; }
+  .logo { display: flex; align-items: center; gap: 10px; }
+  .logo-mark { width: 28px; height: 28px; border-radius: 50%; background: var(--accent); flex: none; }
+  .logo-text { font-family: 'Playfair Display', Georgia, serif; font-size: 24px; font-weight: 700; line-height: 1.2; color: var(--ink); }
+  .site-nav { display: flex; gap: 28px; }
+  .site-nav a { font-size: 15px; font-weight: 500; line-height: 1.4; color: var(--ink-muted); text-decoration: none; }
+  .site-nav a:hover { color: var(--accent); }
+
+  /* Hero */
+  .hero { padding: 64px 0 40px; }
+  .eyebrow { font-size: 12px; font-weight: 600; line-height: 1; letter-spacing: 1px; text-transform: uppercase; color: var(--accent); margin: 0; }
+  .hero h1 {
+    font-family: 'Playfair Display', Georgia, serif;
+    font-size: 48px; font-weight: 700; line-height: 1.15; letter-spacing: -0.5px;
+    color: var(--ink); max-width: 680px; margin: 16px 0 0;
+  }
+  .hero-sub { font-size: 18px; font-weight: 400; line-height: 1.6; color: var(--ink-muted); max-width: 560px; margin: 16px 0 0; }
+
+  /* Filter chips */
+  .filters { display: flex; flex-wrap: wrap; gap: 10px; padding-bottom: 28px; }
+  .chip {
+    font-family: inherit; font-size: 14px; font-weight: 500; line-height: 1;
+    padding: 9px 18px; border-radius: var(--radius-pill);
+    border: 1px solid var(--border); background: var(--accent-soft); color: var(--ink);
+    cursor: pointer; transition: all 150ms ease;
+  }
+  .chip:hover { border-color: var(--accent); }
+  .chip.is-active { background: var(--accent); color: #FFFFFF; border-color: transparent; }
+
+  /* Grid */
+  .grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: var(--card-gap); padding-bottom: 56px; }
+  @media (max-width: 959px) { .grid { grid-template-columns: repeat(2, 1fr); } }
+  @media (max-width: 639px) { .grid { grid-template-columns: 1fr; } .hero h1 { font-size: 36px; } }
+
+  /* Card */
+  .card {
+    background: var(--surface); border: 1px solid var(--border);
+    border-radius: var(--radius-card); box-shadow: var(--shadow-card);
+    overflow: hidden; display: flex; flex-direction: column;
+    transition: transform 150ms ease, box-shadow 150ms ease;
+  }
+  .card:hover { transform: translateY(-2px); box-shadow: 0 2px 4px rgba(26,26,26,0.06), 0 14px 32px rgba(26,26,26,0.10); }
+  .card img { width: 100%; aspect-ratio: 3 / 2; object-fit: cover; display: block; }
+  .card-body { padding: var(--card-padding); display: flex; flex-direction: column; flex: 1; }
+  .card-title { font-family: 'Playfair Display', Georgia, serif; font-size: 22px; font-weight: 700; line-height: 1.25; color: var(--ink); margin: 10px 0 0; }
+  .card-desc { font-size: 15px; font-weight: 400; line-height: 1.55; color: var(--ink-muted); margin: 8px 0 0; flex: 1; }
+  .card-meta {
+    display: flex; gap: 16px; margin-top: 16px; padding-top: 14px;
+    border-top: 1px solid var(--border);
+    font-size: 13px; font-weight: 500; line-height: 1; color: var(--ink-muted);
+  }
+  .card-meta span { white-space: nowrap; }
+
+  /* Footer */
+  .site-footer { border-top: 1px solid var(--border); }
+  .site-footer .wrap { padding: 32px var(--gutter); display: flex; justify-content: space-between; gap: 16px; flex-wrap: wrap; font-size: 14px; font-weight: 400; line-height: 1.5; color: var(--ink-muted); }
+</style>
+</head>
+<body>
+
+<header class="site-header">
+  <div class="wrap">
+    <div class="logo"><span class="logo-mark"></span><span class="logo-text">Saffron Kitchen</span></div>
+    <nav class="site-nav"><a href="#">Recipes</a><a href="#">Seasonal</a><a href="#">About</a></nav>
+  </div>
+</header>
+
+<main>
+  <section class="hero">
+    <div class="wrap">
+      <p class="eyebrow">Six Weeknight Favourites</p>
+      <h1>Everyday recipes, beautifully simple.</h1>
+      <p class="hero-sub">Six tested dishes from our kitchen — each one under an hour, with ingredients you already have.</p>
+    </div>
+  </section>
+
+  <div class="wrap">
+    <div class="filters">
+      <button class="chip is-active">All</button>
+      <button class="chip">Breakfast</button>
+      <button class="chip">Main</button>
+      <button class="chip">Dessert</button>
+      <button class="chip">Vegan</button>
+    </div>
+  </div>
+
+  <div class="wrap">
+    <div class="grid">
+
+      <article class="card">
+        <img src="../assets/blueberry-pancakes.svg" alt="Blueberry Buttermilk Pancakes" />
+        <div class="card-body">
+          <p class="eyebrow">Breakfast</p>
+          <h2 class="card-title">Blueberry Buttermilk Pancakes</h2>
+          <p class="card-desc">Fluffy, tangy and ready in twenty minutes — the stack that makes a slow morning worth it.</p>
+          <div class="card-meta"><span>⏱ 20 min</span><span>◆ Easy</span><span>🍽 Serves 4</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="../assets/avocado-toast.svg" alt="Smashed Avocado Toast" />
+        <div class="card-body">
+          <p class="eyebrow">Breakfast</p>
+          <h2 class="card-title">Smashed Avocado Toast</h2>
+          <p class="card-desc">Lemon, chilli flakes and good sourdough. Simple food that tastes like effort.</p>
+          <div class="card-meta"><span>⏱ 10 min</span><span>◆ Easy</span><span>🍽 Serves 2</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="../assets/tomato-basil-pasta.svg" alt="Tomato &amp; Basil Pasta" />
+        <div class="card-body">
+          <p class="eyebrow">Main</p>
+          <h2 class="card-title">Tomato &amp; Basil Pasta</h2>
+          <p class="card-desc">Slow-blistered tomatoes, torn basil, and just enough pasta water to pull it together.</p>
+          <div class="card-meta"><span>⏱ 30 min</span><span>◆ Easy</span><span>🍽 Serves 4</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="../assets/lemon-tart.svg" alt="Classic Lemon Tart" />
+        <div class="card-body">
+          <p class="eyebrow">Dessert</p>
+          <h2 class="card-title">Classic Lemon Tart</h2>
+          <p class="card-desc">Sharp citrus curd in a crisp butter shell, chilled until it slices clean.</p>
+          <div class="card-meta"><span>⏱ 55 min</span><span>◆ Medium</span><span>🍽 Serves 8</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="../assets/chickpea-curry.svg" alt="Coconut Chickpea Curry" />
+        <div class="card-body">
+          <p class="eyebrow">Main</p>
+          <h2 class="card-title">Coconut Chickpea Curry</h2>
+          <p class="card-desc">A one-pot weeknight curry that leans on pantry staples and gets better overnight.</p>
+          <div class="card-meta"><span>⏱ 35 min</span><span>◆ Easy</span><span>🍽 Serves 4</span></div>
+        </div>
+      </article>
+
+      <article class="card">
+        <img src="../assets/dark-choc-brownies.svg" alt="Dark Chocolate Brownies" />
+        <div class="card-body">
+          <p class="eyebrow">Dessert</p>
+          <h2 class="card-title">Dark Chocolate Brownies</h2>
+          <p class="card-desc">Crackled top, dense middle, and a pinch of flaky salt to keep it honest.</p>
+          <div class="card-meta"><span>⏱ 40 min</span><span>◆ Medium</span><span>🍽 Serves 12</span></div>
+        </div>
+      </article>
+
+    </div>
+  </div>
+</main>
+
+<footer class="site-footer">
+  <div class="wrap">
+    <span>© 2026 Saffron Kitchen</span>
+    <span>Made for people who cook on weeknights.</span>
+  </div>
+</footer>
+
+</body>
+</html>

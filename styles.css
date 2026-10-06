@@ -1,0 +1,236 @@
+/* Saffron Kitchen — implementation styles. See design/DESIGN_SPEC.md for the intended values. */
+
+:root {
+  --accent: #FF6B35;
+  --accent-soft: #FFF1E8;
+  --ink: #1A1A1A;
+  --ink-muted: #6B6B6B;
+  --surface: #FFFFFF;
+  --page: #FAF7F2;
+  --border: #E8E2D9;
+
+  --card-gap: 16px;
+  --card-padding: 20px;
+  --radius-card: 16px;
+  --radius-pill: 999px;
+  --shadow-card: 0 1px 2px rgba(26, 26, 26, 0.04), 0 8px 24px rgba(26, 26, 26, 0.06);
+  --max-width: 1120px;
+  --gutter: 24px;
+}
+
+* { box-sizing: border-box; }
+
+body {
+  margin: 0;
+  background: var(--page);
+  color: var(--ink);
+  font-family: 'Inter', system-ui, -apple-system, sans-serif;
+  -webkit-font-smoothing: antialiased;
+}
+
+.wrap {
+  max-width: var(--max-width);
+  margin: 0 auto;
+  padding: 0 var(--gutter);
+}
+
+/* ---------- Header ---------- */
+
+.site-header {
+  background: var(--surface);
+  border-bottom: 1px solid var(--border);
+}
+
+.site-header .wrap {
+  height: 72px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.logo { display: flex; align-items: center; gap: 10px; }
+
+.logo-mark {
+  width: 28px;
+  height: 28px;
+  border-radius: 50%;
+  background: var(--accent);
+  flex: none;
+}
+
+.logo-text {
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 24px;
+  font-weight: 700;
+  line-height: 1.2;
+  color: var(--ink);
+}
+
+.site-nav { display: flex; gap: 28px; }
+
+.site-nav a {
+  font-size: 15px;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--ink-muted);
+  text-decoration: none;
+  transition: color 150ms ease;
+}
+
+.site-nav a:hover { color: var(--accent); }
+
+/* ---------- Hero ---------- */
+
+.hero { padding: 64px 0 40px; }
+
+.eyebrow {
+  margin: 0;
+  font-size: 12px;
+  font-weight: 600;
+  line-height: 1;
+  letter-spacing: 1px;
+  text-transform: uppercase;
+  color: var(--accent);
+}
+
+.hero h1 {
+  margin: 16px 0 0;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 48px;
+  font-weight: 700;
+  line-height: 1.15;
+  letter-spacing: -0.5px;
+  color: var(--ink);
+  max-width: 680px;
+}
+
+.hero-sub {
+  margin: 16px 0 0;
+  font-size: 18px;
+  font-weight: 400;
+  line-height: 1.6;
+  color: var(--ink-muted);
+  max-width: 560px;
+}
+
+/* ---------- Filter chips ---------- */
+
+.chip {
+  font-family: inherit;
+  font-size: 14px;
+  font-weight: 500;
+  line-height: 1;
+  padding: 9px 18px;
+  border-radius: var(--radius-pill);
+  border: 1px solid var(--border);
+  background: var(--accent-soft);
+  color: var(--ink);
+  cursor: pointer;
+  transition: all 150ms ease;
+}
+
+.chip:hover { border-color: var(--accent); }
+
+.chip.is-active {
+  background: var(--accent);
+  color: #FFFFFF;
+  border-color: transparent;
+}
+
+/* ---------- Recipe grid ---------- */
+
+.grid {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: var(--card-gap);
+  padding-bottom: 56px;
+}
+
+@media (max-width: 959px) {
+  .grid { grid-template-columns: repeat(2, 1fr); }
+}
+
+@media (max-width: 639px) {
+  .grid { grid-template-columns: 1fr; }
+  .hero h1 { font-size: 36px; }
+}
+
+/* ---------- Recipe card ---------- */
+
+.card {
+  background: var(--surface);
+  border: 1px solid var(--border);
+  border-radius: var(--radius-card);
+  box-shadow: var(--shadow-card);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: transform 150ms ease, box-shadow 150ms ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 2px 4px rgba(26, 26, 26, 0.06), 0 14px 32px rgba(26, 26, 26, 0.10);
+}
+
+.card img {
+  width: 100%;
+  aspect-ratio: 3 / 2;
+  object-fit: cover;
+  display: block;
+}
+
+.card-body {
+  padding: var(--card-padding);
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+}
+
+.card-title {
+  margin: 10px 0 0;
+  font-family: 'Playfair Display', Georgia, serif;
+  font-size: 22px;
+  font-weight: 700;
+  line-height: 1.25;
+  color: var(--ink);
+}
+
+.card-desc {
+  margin: 8px 0 0;
+  font-size: 15px;
+  font-weight: 400;
+  line-height: 1.55;
+  color: var(--ink-muted);
+  flex: 1;
+}
+
+.card-meta {
+  display: flex;
+  gap: 16px;
+  margin-top: 16px;
+  padding-top: 14px;
+  border-top: 1px solid var(--border);
+  font-size: 13px;
+  font-weight: 500;
+  line-height: 1;
+  color: var(--ink-muted);
+}
+
+.card-meta span { white-space: nowrap; }
+
+/* ---------- Footer ---------- */
+
+.site-footer { border-top: 1px solid var(--border); }
+
+.site-footer .wrap {
+  padding: 32px var(--gutter);
+  display: flex;
+  justify-content: space-between;
+  gap: 16px;
+  flex-wrap: wrap;
+  font-size: 14px;
+  font-weight: 400;
+  line-height: 1.5;
+  color: var(--ink-muted);
+}
